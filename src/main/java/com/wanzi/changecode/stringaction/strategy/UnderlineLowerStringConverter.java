@@ -11,7 +11,7 @@ import java.util.List;
  * @Description: 下划线小写
  * @Date: 2023/12/22 下午3:56
  */
-public class UnderlineLowerStringConverter implements StringConverterStrategy {
+public class UnderlineLowerStringConverter implements StringConverter {
     @Override
     public String execute(String msg) {
         String[] words = msg.split(MyString.SPLIT_REGEX);

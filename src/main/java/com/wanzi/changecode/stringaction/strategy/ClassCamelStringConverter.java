@@ -10,7 +10,7 @@ import java.util.List;
  * @Description: 类名驼峰
  * @Date: 2023/12/22 下午2:21
  */
-public class ClassCamelStringConverter implements StringConverterStrategy {
+public class ClassCamelStringConverter implements StringConverter {
     @Override
     public String execute(String msg) {
         String[] words = msg.split(MyString.SPLIT_REGEX);

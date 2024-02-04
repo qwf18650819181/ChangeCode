@@ -2,7 +2,7 @@ package com.wanzi.changecode.stringaction;
 
 import com.wanzi.changecode.stringaction.strategy.CamelCaseStringConverter;
 import com.wanzi.changecode.stringaction.strategy.ClassCamelStringConverter;
-import com.wanzi.changecode.stringaction.strategy.StringConverterStrategy;
+import com.wanzi.changecode.stringaction.strategy.StringConverter;
 import com.wanzi.changecode.stringaction.strategy.UnderlineLowerStringConverter;
 
 import java.util.ArrayList;
@@ -28,9 +28,9 @@ public enum StringConverterType {
      */
     TO_UNDERLINE_LOWER("下划线", UnderlineLowerStringConverter.class);
     private final String typeName;
-    private final Class<? extends StringConverterStrategy> strategyClass;
+    private final Class<? extends StringConverter> strategyClass;
 
-    StringConverterType(String typeName, Class<? extends StringConverterStrategy> strategyClass) {
+    StringConverterType(String typeName, Class<? extends StringConverter> strategyClass) {
         this.typeName = typeName;
         this.strategyClass = strategyClass;
     }
@@ -39,7 +39,7 @@ public enum StringConverterType {
         return typeName;
     }
 
-    public Class<? extends StringConverterStrategy> getStrategyClass() {
+    public Class<? extends StringConverter> getStrategyClass() {
         return strategyClass;
     }
 
@@ -62,11 +62,11 @@ public enum StringConverterType {
      * @param typeName
      * @return
      */
-    public static StringConverterStrategy getStrategyInstance(String typeName) {
+    public static StringConverter getStrategyInstance(String typeName) {
         for (StringConverterType value : StringConverterType.values()) {
             if (value.getTypeName().equals(typeName)) {
                 try {
-                    Class<? extends StringConverterStrategy> strategyClass = value.getStrategyClass();
+                    Class<? extends StringConverter> strategyClass = value.getStrategyClass();
                     return strategyClass.getDeclaredConstructor().newInstance();
                 } catch (Exception exception) {
                     exception.printStackTrace();

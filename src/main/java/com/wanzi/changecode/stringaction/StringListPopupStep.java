@@ -4,7 +4,7 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.PopupStep;
 import com.intellij.openapi.ui.popup.util.BaseListPopupStep;
-import com.wanzi.changecode.stringaction.strategy.StringConverterStrategy;
+import com.wanzi.changecode.stringaction.strategy.StringConverter;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -34,7 +34,7 @@ public class StringListPopupStep extends BaseListPopupStep<String> {
         // 处理选中的值
         if (StringUtils.isNotBlank(selectedValue)) {
             String selectedText = editor.getSelectionModel().getSelectedText();
-            StringConverterStrategy strategyInstance = StringConverterType.getStrategyInstance(selectedValue);
+            StringConverter strategyInstance = StringConverterType.getStrategyInstance(selectedValue);
             ReplaceProcess.replaceText(strategyInstance.execute(selectedText), editor, project);
         }
         // 如果是最终选择，则关闭弹出窗口

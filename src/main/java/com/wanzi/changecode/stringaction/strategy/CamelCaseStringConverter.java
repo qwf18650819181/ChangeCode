@@ -6,7 +6,7 @@ package com.wanzi.changecode.stringaction.strategy;
  * @Description: 驼峰命名转换
  * @Date: 2023/12/22 上午11:15
  */
-public class CamelCaseStringConverter implements StringConverterStrategy {
+public class CamelCaseStringConverter implements StringConverter {
     @Override
     public String execute(String msg) {
 

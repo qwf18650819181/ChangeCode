@@ -29,11 +29,11 @@
     </extensions>
     <actions>
         <action id="StringAction" class="com.wanzi.changecode.StringAction" text="StringAction" description="StringAction">
-            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD1" second-keystroke="ctrl NUMPAD1"/>
         </action>
         <action id="TemplateAction" class="com.wanzi.changecode.TemplateAction" text="TemplateAction" description="TemplateAction">
-            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="StringAction"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD2" second-keystroke="ctrl NUMPAD2"/>
         </action>
     </actions>

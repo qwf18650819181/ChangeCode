@@ -6,7 +6,7 @@ package com.wanzi.changecode.stringaction.strategy;
  * @Description: 字符串转换策略
  * @Date: 2023/12/21 下午4:01
  */
-public interface StringConverterStrategy {
+public interface StringConverter {
 
     /**
      * 字符串转换
