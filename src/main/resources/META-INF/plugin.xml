@@ -36,5 +36,9 @@
             <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="StringAction"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD2" second-keystroke="ctrl NUMPAD2"/>
         </action>
+        <action id="DynamicTemplateAction" class="com.wanzi.changecode.DynamicTemplateAction" text="DynamicTemplateAction" description="DynamicTemplateAction">
+            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="TemplateAction"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD3" second-keystroke="ctrl NUMPAD3"/>
+        </action>
     </actions>
 </idea-plugin>
