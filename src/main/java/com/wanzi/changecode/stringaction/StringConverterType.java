@@ -2,6 +2,7 @@ package com.wanzi.changecode.stringaction;
 
 import com.wanzi.changecode.stringaction.strategy.CamelCaseStringConverter;
 import com.wanzi.changecode.stringaction.strategy.ClassCamelStringConverter;
+import com.wanzi.changecode.stringaction.strategy.SqlInRowConverter;
 import com.wanzi.changecode.stringaction.strategy.StringConverter;
 import com.wanzi.changecode.stringaction.strategy.UnderlineLowerStringConverter;
 
@@ -26,7 +27,8 @@ public enum StringConverterType {
     /**
      * 转下划线小写
      */
-    TO_UNDERLINE_LOWER("下划线", UnderlineLowerStringConverter.class);
+    TO_UNDERLINE_LOWER("下划线", UnderlineLowerStringConverter.class),
+    SQL_IN_ROW("SQL IN", SqlInRowConverter.class);
     private final String typeName;
     private final Class<? extends StringConverter> strategyClass;
 
