@@ -14,6 +14,7 @@ public enum TemplateType {
     /**
      * 转驼峰命名
      */
+    LOMBOK("@Accessors", accessors()),
     TIME_FOR_JSON("时间[序列化]", timeForJsonContent()),
     /**
      * 创建表sql
@@ -45,6 +46,14 @@ public enum TemplateType {
 
     public static String content(String type) {
         return Stream.of(TemplateType.values()).filter(item -> type.equals(item.type)).findAny().get().content;
+    }
+
+
+    private static String accessors() {
+        return "@Data\n" +
+                "@Builder\n" +
+                "@NoArgsConstructor\n" +
+                "@AllArgsConstructor";
     }
 
     private static String timeForJsonContent() {
