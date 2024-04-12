@@ -1,9 +1,9 @@
 package com.wanzi.changecode.stringaction;
 
 import com.wanzi.changecode.stringaction.strategy.CamelCaseStringConverter;
-import com.wanzi.changecode.stringaction.strategy.ClassCamelStringConverter;
 import com.wanzi.changecode.stringaction.strategy.SqlInRowConverter;
 import com.wanzi.changecode.stringaction.strategy.StringConverter;
+import com.wanzi.changecode.stringaction.strategy.translate.TranslateStringConverter;
 import com.wanzi.changecode.stringaction.strategy.UnderlineLowerStringConverter;
 
 import java.util.ArrayList;
@@ -20,10 +20,11 @@ public enum StringConverterType {
      * 转驼峰命名
      */
     CAMEL_CASE("驼峰", CamelCaseStringConverter.class),
-    /**
-     * 类名驼峰
-     */
-    CLASS_CAMEL_CASE("类驼峰", ClassCamelStringConverter.class),
+    TRANSFER("翻译", TranslateStringConverter.class),
+//    /**
+//     * 类名驼峰
+//     */
+//    CLASS_CAMEL_CASE("类驼峰", ClassCamelStringConverter.class),
     /**
      * 转下划线小写
      */

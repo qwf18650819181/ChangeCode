@@ -31,6 +31,9 @@ intellij {
 
   plugins.set(listOf(/* Plugin Dependencies */))
 }
+dependencies {
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+}
 
 tasks {
   // Set the JVM compatibility versions
