@@ -23,20 +23,17 @@ import java.util.concurrent.TimeUnit;
  */
 public class TranslateStringConverter implements StringConverter {
     private static final String GOOGLE_TRANSLATE_URL = "http://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=en&dt=t&q=";
-    private static final OkHttpClient client = new OkHttpClient()
-            .newBuilder()
-            .readTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .build();
-    private CamelCaseStringConverter camelCaseStringConverter = new CamelCaseStringConverter();
 
-    private final String appKey = "20200805000533739";
-    private final String securityKey = "vE5UCGVWPDwqsXQAjjk9";
 
     @Override
     public String execute(String msg) {
+        /**
+         * 百度
+         */
         return translate(msg);
+        /**
+         * google
+         */
 //        Request request = new Request.Builder().url(GOOGLE_TRANSLATE_URL + msg).build();
 //        try (Response response = client.newCall(request).execute()) {
 //            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
@@ -47,6 +44,18 @@ public class TranslateStringConverter implements StringConverter {
 //            e.printStackTrace();
 //        }
     }
+
+    private CamelCaseStringConverter camelCaseStringConverter = new CamelCaseStringConverter();
+
+    private final String appKey = "20200805000533739";
+    private final String securityKey = "vE5UCGVWPDwqsXQAjjk9";
+
+    private static final OkHttpClient client = new OkHttpClient()
+            .newBuilder()
+            .readTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .build();
 
     public String translate(String query) {
         try {
