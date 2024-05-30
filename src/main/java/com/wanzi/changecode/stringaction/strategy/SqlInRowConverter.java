@@ -10,10 +10,17 @@ import java.util.List;
  * @Date: 2023/12/22 下午3:56
  */
 public class SqlInRowConverter implements StringConverter {
-
     public static final String ROW_SPILT = "\n";
     public static final String ROW_LEFT = "'";
     public static final String ROW_RIGHT = "',";
+    public static StringConverter getInstance() {
+        return INSTANCE;
+    }
+
+    private static final SqlInRowConverter INSTANCE = new SqlInRowConverter();
+
+    private SqlInRowConverter() {}
+
     @Override
     public String execute(String msg) {
         String[] words = msg.split(ROW_SPILT);
@@ -25,4 +32,6 @@ public class SqlInRowConverter implements StringConverter {
         }
         return String.join(ROW_SPILT, resultList);
     }
+
+
 }

@@ -12,6 +12,15 @@ import java.util.List;
  * @Date: 2023/12/22 下午3:56
  */
 public class UnderlineLowerStringConverter implements StringConverter {
+
+    public static UnderlineLowerStringConverter getInstance() {
+        return INSTANCE;
+    }
+
+    private static final UnderlineLowerStringConverter INSTANCE = new UnderlineLowerStringConverter();
+
+    private UnderlineLowerStringConverter() {}
+
     @Override
     public String execute(String msg) {
         String[] words = msg.split(MyString.SPLIT_REGEX);
@@ -26,4 +35,5 @@ public class UnderlineLowerStringConverter implements StringConverter {
         }
         return String.join("_", resultList);
     }
+
 }

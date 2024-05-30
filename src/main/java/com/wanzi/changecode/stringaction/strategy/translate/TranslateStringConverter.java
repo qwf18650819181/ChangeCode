@@ -3,7 +3,7 @@ package com.wanzi.changecode.stringaction.strategy.translate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import com.wanzi.changecode.stringaction.strategy.CamelCaseStringConverter;
+import com.wanzi.changecode.stringaction.strategy.StringToCamelCaseOrUnderLineConverter;
 import com.wanzi.changecode.stringaction.strategy.StringConverter;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,6 +24,13 @@ import java.util.concurrent.TimeUnit;
 public class TranslateStringConverter implements StringConverter {
     private static final String GOOGLE_TRANSLATE_URL = "http://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=en&dt=t&q=";
 
+    public static TranslateStringConverter getInstance() {
+        return INSTANCE;
+    }
+
+    private static final TranslateStringConverter INSTANCE = new TranslateStringConverter();
+
+    private TranslateStringConverter() {}
 
     @Override
     public String execute(String msg) {
@@ -38,14 +45,14 @@ public class TranslateStringConverter implements StringConverter {
 //        try (Response response = client.newCall(request).execute()) {
 //            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 //            String ans = parseResponse(response.body().string());
-//            return camelCaseStringConverter.execute(ans);
+//            return stringToCamelCaseOrUnderLineConverter.execute(ans);
 //        } catch (Exception e) {
 //            System.out.println(e.getMessage());
 //            e.printStackTrace();
 //        }
     }
 
-    private CamelCaseStringConverter camelCaseStringConverter = new CamelCaseStringConverter();
+    private StringToCamelCaseOrUnderLineConverter stringToCamelCaseOrUnderLineConverter = StringToCamelCaseOrUnderLineConverter.getInstance();
 
     private final String appKey = "20200805000533739";
     private final String securityKey = "vE5UCGVWPDwqsXQAjjk9";
@@ -71,7 +78,7 @@ public class TranslateStringConverter implements StringConverter {
                 String ans = response.body().string();
                 ObjectMapper objectMapper = new ObjectMapper();
                 TranslateResult translateResult = objectMapper.readValue(ans, TranslateResult.class);
-                return camelCaseStringConverter.execute(translateResult.getTranslateDataList().get(0).getDst());
+                return stringToCamelCaseOrUnderLineConverter.execute(translateResult.getTranslateDataList().get(0).getDst());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();

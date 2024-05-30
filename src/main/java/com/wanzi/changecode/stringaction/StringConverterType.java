@@ -1,10 +1,10 @@
 package com.wanzi.changecode.stringaction;
 
-import com.wanzi.changecode.stringaction.strategy.CamelCaseStringConverter;
+import com.wanzi.changecode.stringaction.strategy.ParamToFieldConverter;
 import com.wanzi.changecode.stringaction.strategy.SqlInRowConverter;
 import com.wanzi.changecode.stringaction.strategy.StringConverter;
+import com.wanzi.changecode.stringaction.strategy.StringToCamelCaseOrUnderLineConverter;
 import com.wanzi.changecode.stringaction.strategy.translate.TranslateStringConverter;
-import com.wanzi.changecode.stringaction.strategy.UnderlineLowerStringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,31 +19,24 @@ public enum StringConverterType {
     /**
      * 转驼峰命名
      */
-    CAMEL_CASE("驼峰", CamelCaseStringConverter.class),
-    TRANSFER("翻译", TranslateStringConverter.class),
-//    /**
-//     * 类名驼峰
-//     */
-//    CLASS_CAMEL_CASE("类驼峰", ClassCamelStringConverter.class),
-    /**
-     * 转下划线小写
-     */
-    TO_UNDERLINE_LOWER("下划线", UnderlineLowerStringConverter.class),
-    SQL_IN_ROW("SQL IN", SqlInRowConverter.class);
+    CAMEL_CASE("驼峰/下划线", StringToCamelCaseOrUnderLineConverter.getInstance()),
+    TRANSFER("翻译", TranslateStringConverter.getInstance()),
+    PARAM_TO_FIELD("参数转变量", ParamToFieldConverter.getInstance()),
+    SQL_IN_ROW("SQL IN", SqlInRowConverter.getInstance());
     private final String typeName;
-    private final Class<? extends StringConverter> strategyClass;
+    private final StringConverter stringConverter;
 
-    StringConverterType(String typeName, Class<? extends StringConverter> strategyClass) {
+    StringConverterType(String typeName, StringConverter stringConverter) {
         this.typeName = typeName;
-        this.strategyClass = strategyClass;
+        this.stringConverter = stringConverter;
     }
 
     public String getTypeName() {
         return typeName;
     }
 
-    public Class<? extends StringConverter> getStrategyClass() {
-        return strategyClass;
+    public StringConverter getStringConverter() {
+        return stringConverter;
     }
 
     /**
@@ -68,13 +61,7 @@ public enum StringConverterType {
     public static StringConverter getStrategyInstance(String typeName) {
         for (StringConverterType value : StringConverterType.values()) {
             if (value.getTypeName().equals(typeName)) {
-                try {
-                    Class<? extends StringConverter> strategyClass = value.getStrategyClass();
-                    return strategyClass.getDeclaredConstructor().newInstance();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-
+                return value.stringConverter;
             }
         }
         return null;

@@ -11,6 +11,15 @@ import java.util.List;
  * @Date: 2023/12/22 下午2:21
  */
 public class ClassCamelStringConverter implements StringConverter {
+
+    public static ClassCamelStringConverter getInstance() {
+        return INSTANCE;
+    }
+
+    private static final ClassCamelStringConverter INSTANCE = new ClassCamelStringConverter();
+
+    private ClassCamelStringConverter() {}
+
     @Override
     public String execute(String msg) {
         String[] words = msg.split(MyString.SPLIT_REGEX);
@@ -29,4 +38,6 @@ public class ClassCamelStringConverter implements StringConverter {
         }
         return result.toString();
     }
+
+
 }
