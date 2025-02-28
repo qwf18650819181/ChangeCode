@@ -29,7 +29,7 @@ intellij {
     version.set("2023.1.5")
     type.set("IC") // Target IDE Platform
 
-    plugins.set(listOf(/* Plugin Dependencies */))
+    plugins.set(listOf("com.intellij.java"))
 }
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")

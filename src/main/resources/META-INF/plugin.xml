@@ -21,7 +21,7 @@
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
-
+    <depends>com.intellij.modules.java</depends>
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
@@ -36,7 +36,7 @@
             <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="StringAction"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD2" second-keystroke="ctrl NUMPAD2"/>
         </action>
-        <action id="DynamicTemplateAction" class="com.wanzi.changecode.DynamicTemplateAction" text="DynamicTemplateAction" description="DynamicTemplateAction">
+        <action id="AutoInsertAction" class="com.wanzi.changecode.AutoInsertAction" text="AutoInsertAction" description="AutoInsertAction">
             <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="TemplateAction"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD3" second-keystroke="ctrl NUMPAD3"/>
         </action>
